@@ -33,5 +33,13 @@ public class HelloController {
         ans.setvalue("cos tam");
         return ans;
     }
+	
+	@CrossOrigin(origins = "http://localhost:9000")
+    @RequestMapping(value = "/processText", method = RequestMethod.POST, produces = "application/json")
+    public  @ResponseBody TextToProcess processSomeText(@RequestBody TextToProcess textToProcess) {
+        TextToProcess ans = new TextToProcess();
+        ans.settext(appService.processText(textToProcess));
+        return ans;
+    }
 
 }

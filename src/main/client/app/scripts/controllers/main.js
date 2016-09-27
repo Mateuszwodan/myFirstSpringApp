@@ -8,8 +8,9 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('MainCtrl', function ($scope, $http) {  
-      $scope.dataFromServer = "nic nie ma";
+  .controller('MainCtrl', function($scope, $http) {
+    $scope.dataFromServer = "nic nie ma";
+    $scope.textToProcess = "";
 
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -18,13 +19,29 @@ angular.module('clientApp')
     ];
 
 
-var req = {
- method: 'GET',
- url: 'http://localhost:8080/next',
- headers: {
-   "Content-Type": "application/json"
- }
-}
+    var req = {
+      method: 'GET',
+      url: 'http://localhost:8080/next',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+
+    $scope.process = function() {
+      var reqText = {
+        method: 'POST',
+        url: 'http://localhost:8080/processText',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: {
+          text: $scope.textToProcess
+        }
+      }
+      var startProccesing = $http(reqText).then(function(response) {
+        $scope.textToProcess = response.data.text;
+      })
+    }
 
 
     var pobieranieDanych = $http(req).then(function(response) {
