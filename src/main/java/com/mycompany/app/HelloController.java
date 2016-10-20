@@ -19,13 +19,11 @@ public class HelloController {
 	this.appService = appService;	
 	}
 
-	@CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping("/")
     public String index() {
         return appService.thisIsTheText();
     }
-    
-	@CrossOrigin(origins = "http://localhost:9000")
+
     @RequestMapping(value = "/next", method = RequestMethod.GET, produces = "application/json")
     public  @ResponseBody Answer printSomething() {
         Answer ans = new Answer();
@@ -33,8 +31,7 @@ public class HelloController {
         ans.setvalue("cos tam");
         return ans;
     }
-	
-	@CrossOrigin(origins = "http://localhost:9000")
+
     @RequestMapping(value = "/processText", method = RequestMethod.POST, produces = "application/json")
     public  @ResponseBody TextToProcess processSomeText(@RequestBody TextToProcess textToProcess) {
         TextToProcess ans = new TextToProcess();
