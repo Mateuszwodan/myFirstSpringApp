@@ -48,8 +48,7 @@
 							<executable>npm</executable>
 							<arguments>
 								<argument>install</argument>
-							</arguments>
-							<workingDirectory>client</workingDirectory>
+							</arguments>							
 						</configuration>
 					</execution>
 					<execution>
@@ -62,8 +61,7 @@
 							<executable>bower</executable>
 							<arguments>
 								<argument>install</argument>
-							</arguments>
-							<workingDirectory>client</workingDirectory>
+							</arguments>							
 						</configuration>
 					</execution>
 					<execution>
@@ -76,8 +74,7 @@
 							<executable>grunt</executable>
 							<arguments>
 								<argument>build:dist</argument>
-							</arguments>
-							<workingDirectory>client</workingDirectory>
+							</arguments>							
 						</configuration>
 					</execution>
 				</executions>					
