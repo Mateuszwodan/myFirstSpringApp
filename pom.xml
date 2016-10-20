@@ -49,7 +49,21 @@
 							<arguments>
 								<argument>install</argument>
 							</arguments>
-							<workingDirectory>src/main/client</workingDirectory>
+							<workingDirectory>client</workingDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>bower</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>bower</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+							<workingDirectory>client</workingDirectory>
 						</configuration>
 					</execution>
 					<execution>
@@ -63,10 +77,10 @@
 							<arguments>
 								<argument>build:dist</argument>
 							</arguments>
-							<workingDirectory>src/main/client</workingDirectory>
+							<workingDirectory>client</workingDirectory>
 						</configuration>
 					</execution>
-				</executions>
+				</executions>					
 			</plugin>
 
 			<plugin>
@@ -83,7 +97,29 @@
 							<outputDirectory>${build.outputDirectory}/static</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/client/dist</directory>
+									<directory>client/dist</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${build.outputDirectory}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>Proc</directory>
 									<filtering>false</filtering>
 								</resource>
 							</resources>
