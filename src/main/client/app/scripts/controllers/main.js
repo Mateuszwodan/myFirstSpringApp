@@ -8,10 +8,10 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('MainCtrl', function($scope, $http) {
+  .controller('MainCtrl', function($scope, $http,$compile) {
     $scope.dataFromServer = "nic nie ma";
     $scope.textToProcess = "";
-
+    var data;
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -21,7 +21,7 @@ angular.module('clientApp')
 
     var req = {
       method: 'GET',
-      url: 'https://myfirstspringapp.herokuapp.com/next',
+      url: 'http://localhost:8080/next',
       headers: {
         "Content-Type": "application/json"
       }
@@ -30,7 +30,7 @@ angular.module('clientApp')
     $scope.process = function() {
       var reqText = {
         method: 'POST',
-        url: 'https://myfirstspringapp.herokuapp.com/processText',
+        url: 'http://localhost:8080/googleIt',
         headers: {
           "Content-Type": "application/json"
         },
@@ -39,7 +39,13 @@ angular.module('clientApp')
         }
       }
       var startProccesing = $http(reqText).then(function(response) {
-        $scope.textToProcess = response.data.text;
+        data = response.data.text;
+       // data = data.replace(/<script>/g,"<scroipt>");
+       // data = data.replace(/<\/script>/g,"</scroipt>");
+       // data = data.replace(/<style>/g,"<styole>");
+       // data = data.replace(/<\/style>/g,"</styole>");
+        var linkingFunction = $compile(data);
+        angular.element(document.getElementById('ShowText')).append(linkingFunction($scope));
       })
     }
 

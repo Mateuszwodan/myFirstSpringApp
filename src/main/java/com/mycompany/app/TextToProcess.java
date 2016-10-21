@@ -14,4 +14,5 @@ public class TextToProcess {
 	public void settext(String text) {
 		this.text = text;
 	}
+	
 }
