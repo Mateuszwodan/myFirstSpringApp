@@ -21,7 +21,7 @@ angular.module('clientApp')
 
     var req = {
       method: 'GET',
-      url: 'http://localhost:8080/next',
+      url: 'https://boiling-springs-13455.herokuapp.com/next',
       headers: {
         "Content-Type": "application/json"
       }
@@ -30,7 +30,7 @@ angular.module('clientApp')
     $scope.process = function() {
       var reqText = {
         method: 'POST',
-        url: 'http://localhost:8080/processText',
+        url: 'https://boiling-springs-13455.herokuapp.com/processText',
         headers: {
           "Content-Type": "application/json"
         },
