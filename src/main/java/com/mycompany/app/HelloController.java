@@ -26,7 +26,7 @@ public class HelloController {
 
     @RequestMapping("/")
     	public ResponseEntity<Object> redirectToExternalUrl() throws URISyntaxException {
-    	    URI yahoo = new URI("https://boiling-springs-13455.herokuapp.com/index.html#/");
+    	    URI yahoo = new URI("https://myfirstspringapp.herokuapp.com/index.html#/");
     	    HttpHeaders httpHeaders = new HttpHeaders();
     	    httpHeaders.setLocation(yahoo);
     	    return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
