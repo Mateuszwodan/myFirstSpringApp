@@ -1,20 +1,31 @@
 package com.matex.app.model.to;
 
-import lombok.Getter;
-import lombok.Setter;
+public class ClientTo {
 
-	public class ClientTo {
 
-		@Getter
-		@Setter
+		public long getId() {
+			return id;
+		}
+		public void setId(long id) {
+			this.id = id;
+		}
+		public String getEmail() {
+			return email;
+		}
+		public void setEmail(String email) {
+			this.email = email;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+
 		private long id;
 
-		@Getter
-		@Setter
 		private String email;
 
-		@Getter
-		@Setter
 		private String name;
 		
 		public ClientTo()

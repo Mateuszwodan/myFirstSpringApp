@@ -6,26 +6,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
 public class Client {
 
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Getter
-	@Setter
 	private long id;
 
 	@NotNull
-	@Getter
-	@Setter
 	private String email;
 
 	@NotNull
-	@Getter
-	@Setter
 	private String name;
 	
 	public Client()

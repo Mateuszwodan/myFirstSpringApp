@@ -23,17 +23,9 @@ import com.matex.app.model.to.TextToProcess;
 @Service
 public class App 
 {
-	@Autowired
-	ClientDAO clientDAO;	
+	
 	private final String USER_AGENT = "Mozilla/5.0";
-	@Autowired
-	ClientMapper clientMapper;
-	@Autowired
-	public App(ClientMapper clientMapper, ClientDAO clientDAO)
-	{
-		this.clientMapper = clientMapper;
-		this.clientDAO = clientDAO;
-	}
+	
 	public App()
 	{}
     public String thisIsTheText()
@@ -87,15 +79,5 @@ public class App
 		return response.toString();
 
 	}
-	public String saveUser(ClientTo client)
-	{
-		clientDAO.save(clientMapper.mapTo2Model(client));
-		return "Object saved to database";
-	}
-	public List<ClientTo> getAllUsers()
-	{
-		List<Client> clients = new ArrayList<Client>();
-		clientDAO.findAll().forEach(clients::add);
-		return clientMapper.mapModels2Tos(clients);
-	}
+	
 }
