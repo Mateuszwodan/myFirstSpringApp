@@ -11,6 +11,7 @@ angular.module('clientApp')
   .controller('MainCtrl', function($scope, $http,$compile) {
     $scope.dataFromServer = "nic nie ma";
     $scope.textToProcess = "";
+    $scope.ShowText = "";
     var data;
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -29,23 +30,14 @@ angular.module('clientApp')
 
     $scope.process = function() {
       var reqText = {
-        method: 'POST',
-        url: 'http://localhost:8080/googleIt',
+        method: 'GET',
+        url: 'http://localhost:8080/getUsers',
         headers: {
           "Content-Type": "application/json"
         },
-        data: {
-          text: $scope.textToProcess
-        }
       }
-      var startProccesing = $http(reqText).then(function(response) {
-        data = response.data.text;
-       // data = data.replace(/<script>/g,"<scroipt>");
-       // data = data.replace(/<\/script>/g,"</scroipt>");
-       // data = data.replace(/<style>/g,"<styole>");
-       // data = data.replace(/<\/style>/g,"</styole>");
-        var linkingFunction = $compile(data);
-        angular.element(document.getElementById('ShowText')).append(linkingFunction($scope));
+      var startProccesing = $http(reqText).then(function(response) {        
+        $scope.ShowText = response.data;       
       })
     }
 

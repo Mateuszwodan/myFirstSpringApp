@@ -1,6 +1,4 @@
-package com.mycompany.app;
-
-import java.util.Arrays;
+package com.matex.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

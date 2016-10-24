@@ -1,4 +1,4 @@
-package com.mycompany.app;
+package com.matex.app.model.to;
 
 import org.springframework.stereotype.Component;
 

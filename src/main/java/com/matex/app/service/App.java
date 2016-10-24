@@ -1,11 +1,20 @@
-package com.mycompany.app;
+package com.matex.app.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.matex.app.database.DAO.ClientDAO;
+import com.matex.app.mapper.ClientMapper;
+import com.matex.app.model.Client;
+import com.matex.app.model.to.ClientTo;
+import com.matex.app.model.to.TextToProcess;
 
 /**
  * Hello world!
@@ -14,7 +23,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class App 
 {
+	@Autowired
+	ClientDAO clientDAO;	
 	private final String USER_AGENT = "Mozilla/5.0";
+	@Autowired
+	ClientMapper clientMapper;
+	@Autowired
+	public App(ClientMapper clientMapper, ClientDAO clientDAO)
+	{
+		this.clientMapper = clientMapper;
+		this.clientDAO = clientDAO;
+	}
+	public App()
+	{}
     public String thisIsTheText()
     {
     	return "Print me";
@@ -65,5 +86,16 @@ public class App
 		
 		return response.toString();
 
+	}
+	public String saveUser(ClientTo client)
+	{
+		clientDAO.save(clientMapper.mapTo2Model(client));
+		return "Object saved to database";
+	}
+	public List<ClientTo> getAllUsers()
+	{
+		List<Client> clients = new ArrayList<Client>();
+		clientDAO.findAll().forEach(clients::add);
+		return clientMapper.mapModels2Tos(clients);
 	}
 }

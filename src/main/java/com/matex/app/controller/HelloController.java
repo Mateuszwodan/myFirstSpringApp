@@ -1,7 +1,9 @@
-package com.mycompany.app;
+package com.matex.app.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,8 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.matex.app.model.Client;
+import com.matex.app.model.to.Answer;
+import com.matex.app.model.to.ClientTo;
+import com.matex.app.model.to.TextToProcess;
+import com.matex.app.service.App;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin
 public class HelloController {
 	
 	private final App appService;
@@ -54,6 +62,18 @@ public class HelloController {
         TextToProcess ans = new TextToProcess();
         ans.settext(appService.googleIt(textToProcess.gettext()));
         return ans;
+    }
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = "application/json")
+    public  @ResponseBody TextToProcess saveUser(@RequestBody ClientTo clientTo) {
+    	ClientTo client = new ClientTo(clientTo.getEmail(), clientTo.getName());
+        TextToProcess ans = new TextToProcess();
+        ans.settext(appService.saveUser(client));
+        return ans;
+    }
+    @RequestMapping(value = "/getUsers", method = RequestMethod.GET, produces = "application/json")
+    public  @ResponseBody List<ClientTo> showUsers() {
+    	List<ClientTo> clients = appService.getAllUsers();
+        return clients;
     }
 
 }
