@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.matex.app.database.DAO.ClientDAO;
 import com.matex.app.mapper.ClientMapper;
 import com.matex.app.model.Client;
 import com.matex.app.model.to.ClientTo;
 
+@Service
 public class DatabaseService {
 	@Autowired
 	ClientDAO clientDAO;	

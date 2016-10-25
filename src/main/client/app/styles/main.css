@@ -83,4 +83,9 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+  .bordered {
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 5px;
+}
 }
