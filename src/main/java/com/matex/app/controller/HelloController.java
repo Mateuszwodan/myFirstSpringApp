@@ -2,6 +2,7 @@ package com.matex.app.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.matex.app.database.DAO.UsersDAO;
+import com.matex.app.model.Client;
+import com.matex.app.model.Users;
 import com.matex.app.model.to.Answer;
 import com.matex.app.model.to.ClientTo;
 import com.matex.app.model.to.TextToProcess;
@@ -27,12 +31,14 @@ public class HelloController {
 	
 	private final App appService;
 	private final DatabaseService databaseService;
+	private final UsersDAO usersDAO;
 	
 	@Autowired
-	public HelloController(App appService, DatabaseService databaseService)
+	public HelloController(App appService, DatabaseService databaseService, UsersDAO usersDAO)
 	{
 	this.appService = appService;	
 	this.databaseService = databaseService;
+	this.usersDAO = usersDAO;
 	}
 
     @RequestMapping("/")
@@ -74,6 +80,12 @@ public class HelloController {
     @RequestMapping(value = "/getUsers", method = RequestMethod.GET, produces = "application/json")
     public  @ResponseBody List<ClientTo> showUsers() {
     	List<ClientTo> clients = databaseService.getAllUsers();
+        return clients;
+    }
+    @RequestMapping(value = "/getUsers123", method = RequestMethod.GET, produces = "application/json")
+    public  @ResponseBody List<Users> gatUsers() {
+    	List<Users> clients = new ArrayList<Users>();
+    	usersDAO.findAll().forEach(clients::add);
         return clients;
     }
 
