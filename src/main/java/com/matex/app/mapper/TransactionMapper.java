@@ -16,16 +16,16 @@ public class TransactionMapper {
 	
 
 	public TransactionTo mapModel2To(Transaction Transaction) {
-		return new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt(), Transaction.getDescription());
+		return new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt(), Transaction.getDescription(), Transaction.getId());
 	}
 
 	public Transaction mapTo2Model(TransactionTo TransactionTo) {
-		return new Transaction(userMapper.mapTo2Model(TransactionTo.getDebtor()),userMapper.mapTo2Model(TransactionTo.getCreditor()), TransactionTo.getDebt(), TransactionTo.getDescription());
+		return new Transaction(userMapper.mapTo2Model(TransactionTo.getDebtor()),userMapper.mapTo2Model(TransactionTo.getCreditor()), TransactionTo.getDebt(), TransactionTo.getDescription(), TransactionTo.getId());
 	}
 	public List<TransactionTo> mapModels2Tos(List<Transaction> Transactions) {
 		List<TransactionTo> TransactionsTo = new ArrayList<TransactionTo>();
 		for (Transaction Transaction : Transactions) {
-			TransactionsTo.add(new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt(), Transaction.getDescription()));
+			TransactionsTo.add(new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt(), Transaction.getDescription(), Transaction.getId()));
 		}
 	    return TransactionsTo;
 	  }
@@ -33,7 +33,7 @@ public class TransactionMapper {
 	  public List<Transaction> mapTos2Models(List<TransactionTo> TransactionTos) {
 		  List<Transaction> Transactions = new ArrayList<Transaction>();
 			for (TransactionTo Transaction : TransactionTos) {
-				Transactions.add(new Transaction(userMapper.mapTo2Model(Transaction.getDebtor()), userMapper.mapTo2Model(Transaction.getCreditor()),Transaction.getDebt(), Transaction.getDescription()));
+				Transactions.add(new Transaction(userMapper.mapTo2Model(Transaction.getDebtor()), userMapper.mapTo2Model(Transaction.getCreditor()),Transaction.getDebt(), Transaction.getDescription(), Transaction.getId()));
 			}
 		    return Transactions;
 	  }

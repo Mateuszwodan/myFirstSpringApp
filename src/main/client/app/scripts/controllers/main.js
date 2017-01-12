@@ -12,6 +12,7 @@ angular.module('clientApp')
     $scope.dataFromServer = "nic nie ma";
     $scope.textToProcess = "";
     $scope.ShowText = "";
+    var nazwa = "https://myfirstspringapp.herokuapp.com/";
     var data;
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -22,7 +23,7 @@ angular.module('clientApp')
 
     var req = {
       method: 'GET',
-      url: 'http://localhost:8080/next',
+      url: nazwa + 'next',
       headers: {
         "Content-Type": "application/json"
       }
@@ -31,7 +32,7 @@ angular.module('clientApp')
     $scope.process = function() {
       var reqText = {
         method: 'GET',
-        url: 'http://localhost:8080/getUsers',
+        url: nazwa + 'getUsers',
         headers: {
           "Content-Type": "application/json"
         },

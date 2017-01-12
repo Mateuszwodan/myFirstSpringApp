@@ -1,5 +1,8 @@
 package com.matex.app.model.to;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ClientTo {
 
 

@@ -28,6 +28,7 @@ public class CorsFilter implements Filter {
         // can be moved to properties
         HttpServletResponse res = (HttpServletResponse) response;
         res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Headers ", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers");
         filterChain.doFilter(request, res);
 
     }

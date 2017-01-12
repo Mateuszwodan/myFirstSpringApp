@@ -2,7 +2,6 @@ package com.matex.app.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.matex.app.database.DAO.TransactionDAO;
-import com.matex.app.database.DAO.UsersDAO;
 import com.matex.app.model.Users;
 import com.matex.app.model.to.Answer;
 import com.matex.app.model.to.ClientTo;
@@ -76,16 +74,11 @@ public class HelloController {
         return ans;
     }
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = "application/json")
-    public  @ResponseBody TextToProcess saveUser(@RequestBody ClientTo clientTo) {
-    	ClientTo client = new ClientTo(clientTo.getEmail(), clientTo.getName());
+    public  @ResponseBody TextToProcess saveUser(@RequestBody UsersTo usersTo) {
+    	UsersTo users = new UsersTo(usersTo.getUsername(), usersTo.getPassword(), usersTo.getEnabled());
         TextToProcess ans = new TextToProcess();
-        ans.settext(databaseService.saveUser(client));
+        ans.settext(databaseService.saveUser(users));
         return ans;
-    }
-    @RequestMapping(value = "/getUsers", method = RequestMethod.GET, produces = "application/json")
-    public  @ResponseBody List<ClientTo> showUsers() {
-    	List<ClientTo> clients = databaseService.getAllUsers();
-        return clients;
     }
     @RequestMapping(value = "/getUsers123", method = RequestMethod.GET, produces = "application/json")
     public  @ResponseBody List<Users> getUsers() {
@@ -115,5 +108,25 @@ public class HelloController {
         ans.settext(databaseService.saveTransaction(trans));
         return ans;
     }
+    @RequestMapping(value = "/deleteTransaction", method = RequestMethod.POST, produces = "application/json")
+    public  @ResponseBody TextToProcess deleteTransaction(@RequestBody TransactionTo transactionTo) {
+    	
+    	UsersTo first;
+    	UsersTo second;
+    	TextToProcess ans;
+    	ans = new TextToProcess();
+    	try{
+    	first = userService.getUserByUsername(transactionTo.getDebtor().getUsername());
+    	second = userService.getUserByUsername(transactionTo.getCreditor().getUsername());
+    	}catch(Exception e)
+    	{
+    		ans.settext("Error");
+    		return ans;
+    	}
+    	TransactionTo trans = new TransactionTo(first, second, transactionTo.getDebt(), transactionTo.getDescription(), transactionTo.getId()); 	
+        ans.settext(databaseService.deleteTransaction(trans));
+        return ans;
+    }
+
 
 }

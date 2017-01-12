@@ -22,6 +22,12 @@ public class Transaction {
 	@ManyToOne
 	private Users creditor;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	@NotNull
 	private Double debt;
 	
@@ -35,12 +41,13 @@ public class Transaction {
 	{
 		this.debt = Debt;
 	}
-	public Transaction(Users Debtor, Users Creditor, Double Debt, String description)
+	public Transaction(Users Debtor, Users Creditor, Double Debt, String description, long id)
 	{
 		this.debtor = Debtor;
 		this.creditor = Creditor;
 		this.debt = Debt;
 		this.description = description;
+		this.id = id;
 	}
 	public void setDebtor(Users Debtor)
 	{

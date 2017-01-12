@@ -22,6 +22,14 @@ public class TransactionTo {
 	{
 		this.debt = Debt;
 	}
+	public TransactionTo(UsersTo Debtor, UsersTo Creditor, Double Debt, String description, long id)
+	{
+		this.debtor = Debtor;
+		this.creditor = Creditor;
+		this.debt = Debt;
+		this.description = description;
+		this.setId(id);
+	}	
 	public TransactionTo(UsersTo Debtor, UsersTo Creditor, Double Debt, String description)
 	{
 		this.debtor = Debtor;
@@ -50,5 +58,15 @@ public class TransactionTo {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public TransactionTo()
+	{
+		
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 }

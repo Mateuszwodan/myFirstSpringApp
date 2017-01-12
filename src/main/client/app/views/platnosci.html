@@ -1,22 +1,37 @@
-
- 
-<div class="container" ng-hide="dodawaniePlatnosci">
-  <div class="form-group form-inline">
-  <select ng-model="biorca" class="form-control" ng-options="x.username for x in uzytkownicy">
+<div class="container">
+  <div class="form-group form-inline" ng-hide="dodawaniePlatnosci">
+    <select ng-model="biorca" class="form-control" ng-options="x.username for x in uzytkownicy">
   </select>
-  <select ng-model="dawca" class="form-control" ng-options="x.username for x in uzytkownicy">
+    <select ng-model="dawca" class="form-control" ng-options="x.username for x in uzytkownicy">
      </select>
-  <input id="kwota" ng-model="kwota" class="form-control" placeholder="Kwota" type="number">
-  <button ng-click="zapiszPlatnosc()" class="btn-success">
+    <input id="kwota" ng-model="kwota" class="form-control" placeholder="Kwota" type="number">
+    <button ng-click="zapiszPlatnosc()" class="btn-success">
     Zapisz płatnośc
   </button>
   </div>
-
-<div class="container">
-    <h1 ng-repeat="x in daneZSerwera">{{x.creditor.username}} jest winien {{x.debtor.username}} : {{x.debt}} złotych</h1>
-</div>
-<button ng-click="dodajPlatnosc()" class="btn-primary btn-lg btn-block">
+  <div class="form-group form-inline" ng-hide="dodawanieUzytkownika">
+     <input id="username" ng-model="nowy_uzytkownik" class="form-control" placeholder="Nazwa uzytkownika">
+    <button ng-click="zapiszUzytkownika()" class="btn-success">
+    Zapisz użytkownika
+  </button>
+  </div>
+  <div class="container">
+    <table class="table">
+      <tr ng-repeat="x in daneZSerwera">
+        <td>
+          <h3>Id transakcji : {{x.id}}.</br> {{x.creditor.username}} jest winien {{x.debtor.username}} : {{x.debt}} złotych</h3>
+        <td>
+          <input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow($index)" />
+        </td>
+      </tr>
+    </table>
+    
+  </div>
+  <button ng-click="dodajPlatnosc()" class="btn-primary btn-lg btn-block">
     Dodaj płatność
   </button>
+   <button ng-click="dodajUzytkownika()" class="btn-primary btn-lg btn-block">
+    Dodaj użytkownika
+  </button>
   <p> {{komunikat}}</p>
-  </div>
+</div>

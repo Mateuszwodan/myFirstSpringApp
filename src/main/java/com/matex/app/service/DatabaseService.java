@@ -6,44 +6,40 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.matex.app.database.DAO.ClientDAO;
 import com.matex.app.database.DAO.TransactionDAO;
+import com.matex.app.database.DAO.UsersDAO;
 import com.matex.app.mapper.ClientMapper;
 import com.matex.app.mapper.TransactionMapper;
+import com.matex.app.mapper.UsersMapper;
 import com.matex.app.model.Client;
 import com.matex.app.model.Transaction;
-import com.matex.app.model.Users;
 import com.matex.app.model.to.ClientTo;
 import com.matex.app.model.to.TransactionTo;
+import com.matex.app.model.to.UsersTo;
+
 
 @Service
 public class DatabaseService {
 	@Autowired
-	ClientDAO clientDAO;	
+	UsersDAO usersDAO;	
 	@Autowired
-	ClientMapper clientMapper;
+	UsersMapper UsersMapper;
 	@Autowired
 	TransactionDAO transactionDAO;
 	@Autowired
 	TransactionMapper transactionMapper;
 	@Autowired
-	public DatabaseService(ClientMapper clientMapper, ClientDAO clientDAO, TransactionDAO transactionDAO, TransactionMapper transactionMapper)
+	public DatabaseService(UsersMapper usersMapper, UsersDAO clientDAO, TransactionDAO transactionDAO, TransactionMapper transactionMapper)
 	{
-		this.clientMapper = clientMapper;
-		this.clientDAO = clientDAO;
+		this.UsersMapper = usersMapper;
+		this.usersDAO = clientDAO;
 		this.transactionDAO = transactionDAO;
 		this.transactionMapper = transactionMapper;
 	}
-	public String saveUser(ClientTo client)
+	public String saveUser(UsersTo user)
 	{
-		clientDAO.save(clientMapper.mapTo2Model(client));
+		usersDAO.save(UsersMapper.mapTo2Model(user));
 		return "Object saved to database";
-	}
-	public List<ClientTo> getAllUsers()
-	{
-		List<Client> clients = new ArrayList<Client>();
-		clientDAO.findAll().forEach(clients::add);
-		return clientMapper.mapModels2Tos(clients);
 	}
 	public List<TransactionTo> getAllTransactions()
 	{
@@ -55,5 +51,10 @@ public class DatabaseService {
 	{
 		transactionDAO.save(transactionMapper.mapTo2Model(transactionTo));
 		return "Object saved to database";
+	}
+	public String deleteTransaction(TransactionTo transactionTo)
+	{
+		transactionDAO.delete(transactionMapper.mapTo2Model(transactionTo));
+		return "Object deleted from database";
 	}
 }
