@@ -29,7 +29,7 @@ import com.matex.app.service.DatabaseService;
 import com.matex.app.service.UserService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:9000")
 public class HelloController {
 	
 	private final App appService;
@@ -97,20 +97,22 @@ public class HelloController {
     	return transactions;
     }
     @RequestMapping(value = "/saveTransaction", method = RequestMethod.POST, produces = "application/json")
-    public  @ResponseBody TextToProcess saveTransaction(String debtor, String creditor, Double debt) {
+    public  @ResponseBody TextToProcess saveTransaction(@RequestBody TransactionTo transactionTo) {
     	
     	UsersTo first;
     	UsersTo second;
+    	TextToProcess ans;
+    	ans = new TextToProcess();
     	try{
-    	first = userService.getUserByUsername(debtor);
-    	second = userService.getUserByUsername(creditor);
+    	first = userService.getUserByUsername(transactionTo.getDebtor().getUsername());
+    	second = userService.getUserByUsername(transactionTo.getCreditor().getUsername());
     	}catch(Exception e)
     	{
-    		return null;
+    		ans.settext("Error");
+    		return ans;
     	}
-    	TransactionTo transactionTo = new TransactionTo(first, second, debt); 	
-        TextToProcess ans = new TextToProcess();
-        ans.settext(databaseService.saveTransaction(transactionTo));
+    	TransactionTo trans = new TransactionTo(first, second, transactionTo.getDebt(), transactionTo.getDescription()); 	
+        ans.settext(databaseService.saveTransaction(trans));
         return ans;
     }
 

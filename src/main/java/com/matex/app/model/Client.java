@@ -8,6 +8,16 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Client {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
+	@NotNull
+	private String email;
+
+	@NotNull
+	private String name;
 
 	public long getId() {
 		return id;
@@ -26,17 +36,7 @@ public class Client {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-
-	@NotNull
-	private String email;
-
-	@NotNull
-	private String name;
+	}	
 	
 	public Client()
 	{}

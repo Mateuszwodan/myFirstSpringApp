@@ -19,8 +19,8 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
+      .when('/platnosci', {
+        templateUrl: 'views/platnosci.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })

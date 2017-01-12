@@ -12,6 +12,8 @@ public class TransactionTo {
 	
 	private Double debt;
 	
+	private String description;
+	
 	public Double getDebt()
 	{
 		return debt;
@@ -20,11 +22,12 @@ public class TransactionTo {
 	{
 		this.debt = Debt;
 	}
-	public TransactionTo(UsersTo Debtor, UsersTo Creditor, Double Debt)
+	public TransactionTo(UsersTo Debtor, UsersTo Creditor, Double Debt, String description)
 	{
 		this.debtor = Debtor;
 		this.creditor = Creditor;
 		this.debt = Debt;
+		this.description = description;
 	}	
 	public void setDebtor(UsersTo Debtor)
 	{
@@ -41,5 +44,11 @@ public class TransactionTo {
 	public UsersTo getCreditor()
 	{
 		return this.creditor;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

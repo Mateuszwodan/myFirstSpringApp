@@ -10,16 +10,16 @@ import com.matex.app.model.to.UsersTo;
 @Component
 public class UsersMapper {
 	public UsersTo mapModel2To(Users Users) {
-		return new UsersTo(Users.getUsername(), Users.getPassword());
+		return new UsersTo(Users.getUsername(), Users.getPassword(), Users.getEnabled());
 	}
 
 	public Users mapTo2Model(UsersTo UsersTo) {
-		return new Users(UsersTo.getUsername(), UsersTo.getPassword());
+		return new Users(UsersTo.getUsername(), UsersTo.getPassword(), UsersTo.getEnabled());
 	}
 	public List<UsersTo> mapModels2Tos(List<Users> Userss) {
 		List<UsersTo> UserssTo = new ArrayList<UsersTo>();
 		for (Users Users : Userss) {
-			UserssTo.add(new UsersTo(Users.getUsername(), Users.getPassword()));
+			UserssTo.add(new UsersTo(Users.getUsername(), Users.getPassword(), Users.getEnabled()));
 		}
 	    return UserssTo;
 	  }
@@ -27,7 +27,7 @@ public class UsersMapper {
 	  public List<Users> mapTos2Models(List<UsersTo> UsersTos) {
 		  List<Users> Userss = new ArrayList<Users>();
 			for (UsersTo Users : UsersTos) {
-				Userss.add(new Users(Users.getUsername(), Users.getPassword()));
+				Userss.add(new Users(Users.getUsername(), Users.getPassword(), Users.getEnabled()));
 			}
 		    return Userss;
 	  }

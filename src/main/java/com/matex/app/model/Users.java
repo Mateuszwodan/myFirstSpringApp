@@ -41,10 +41,11 @@ public class Users {
 	{
 		return enabled;
 	}
-	public Users(String userID, String password)
+	public Users(String userID, String password, boolean enabled)
 	{
 		this.users = userID;
 		this.password = password;
+		this.enabled = enabled;
 	}
 
 	public Users()

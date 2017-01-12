@@ -25,6 +25,8 @@ public class Transaction {
 	@NotNull
 	private Double debt;
 	
+	private String description;
+	
 	public Double getDebt()
 	{
 		return debt;
@@ -33,11 +35,12 @@ public class Transaction {
 	{
 		this.debt = Debt;
 	}
-	public Transaction(Users Debtor, Users Creditor, Double Debt)
+	public Transaction(Users Debtor, Users Creditor, Double Debt, String description)
 	{
 		this.debtor = Debtor;
 		this.creditor = Creditor;
 		this.debt = Debt;
+		this.description = description;
 	}
 	public void setDebtor(Users Debtor)
 	{
@@ -54,5 +57,15 @@ public class Transaction {
 	public Users getCreditor()
 	{
 		return this.creditor;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Transaction()
+	{
+		
 	}
 }

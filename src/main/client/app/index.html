@@ -65,7 +65,7 @@
 
             <ul class="nav navbar-nav">
               <li class="highligth"><a href="#/">Home</a></li>
-              <li class="highligth"><a ng-href="#/about">About</a></li>
+              <li class="highligth"><a ng-href="#/platnosci">Płatności</a></li>
               <li class="highligth"><a ng-href="#/">Contact</a></li>
               <li class="highligth"><a ng-href="#/">{{dataFromServer}}</a></li>
             </ul>
@@ -74,15 +74,7 @@
       </div>
     </div>
 
-<div class="container">
-  <input id="TextInput" ng-model="textToProcess">
-  <button ng-click="process()">
-    Process
-  </button>
-  <div class="container" id="ShowText">
-    <div class="col-xs-6 col-sm-4 bordered" ng-repeat="x in ShowText">{{x.name + " - " + x.email}}</p>
-    </div>
-</div>
+
     <div class="container">
     <div ng-view=""></div>
     </div>

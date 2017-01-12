@@ -16,16 +16,16 @@ public class TransactionMapper {
 	
 
 	public TransactionTo mapModel2To(Transaction Transaction) {
-		return new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt());
+		return new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt(), Transaction.getDescription());
 	}
 
 	public Transaction mapTo2Model(TransactionTo TransactionTo) {
-		return new Transaction(userMapper.mapTo2Model(TransactionTo.getDebtor()),userMapper.mapTo2Model(TransactionTo.getCreditor()), TransactionTo.getDebt());
+		return new Transaction(userMapper.mapTo2Model(TransactionTo.getDebtor()),userMapper.mapTo2Model(TransactionTo.getCreditor()), TransactionTo.getDebt(), TransactionTo.getDescription());
 	}
 	public List<TransactionTo> mapModels2Tos(List<Transaction> Transactions) {
 		List<TransactionTo> TransactionsTo = new ArrayList<TransactionTo>();
 		for (Transaction Transaction : Transactions) {
-			TransactionsTo.add(new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt()));
+			TransactionsTo.add(new TransactionTo(userMapper.mapModel2To(Transaction.getDebtor()), userMapper.mapModel2To(Transaction.getCreditor()), Transaction.getDebt(), Transaction.getDescription()));
 		}
 	    return TransactionsTo;
 	  }
@@ -33,7 +33,7 @@ public class TransactionMapper {
 	  public List<Transaction> mapTos2Models(List<TransactionTo> TransactionTos) {
 		  List<Transaction> Transactions = new ArrayList<Transaction>();
 			for (TransactionTo Transaction : TransactionTos) {
-				Transactions.add(new Transaction(userMapper.mapTo2Model(Transaction.getDebtor()), userMapper.mapTo2Model(Transaction.getCreditor()),Transaction.getDebt()));
+				Transactions.add(new Transaction(userMapper.mapTo2Model(Transaction.getDebtor()), userMapper.mapTo2Model(Transaction.getCreditor()),Transaction.getDebt(), Transaction.getDescription()));
 			}
 		    return Transactions;
 	  }
