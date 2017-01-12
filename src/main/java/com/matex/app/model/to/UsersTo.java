@@ -32,10 +32,9 @@ public class UsersTo {
 	{
 		return enabled;
 	}
-	public UsersTo(String username, String password, boolean enabled)
+	public UsersTo(String username, String password)
 	{
 		this.username = username;
 		this.password = password;
-		this.enabled = enabled;
 	}
 }

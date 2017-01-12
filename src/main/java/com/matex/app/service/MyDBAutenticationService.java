@@ -22,7 +22,7 @@ public class MyDBAutenticationService implements UserDetailsService {
 	UsersDAO usersDAO;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Users users = usersDAO.findByUsername(username);
+		Users users = usersDAO.findByUsers(username);
 		List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
 		List<String> roles = new ArrayList<String>();
 		roles.add("ROLE_USER");

@@ -9,7 +9,7 @@ public class Users {
 	
 	@Id
 	@NotNull
-	private String username;
+	private String users;
 
 	@NotNull
 	private String password;
@@ -19,7 +19,7 @@ public class Users {
 	
 	public void setUsername(String username)
 	{
-		this.username = username;
+		this.users = username;
 	}
 	public void setPassword(String password)
 	{
@@ -31,7 +31,7 @@ public class Users {
 	}
 	public String getUsername()
 	{
-		return username;
+		return users;
 	}
 	public String getPassword()
 	{
@@ -41,5 +41,14 @@ public class Users {
 	{
 		return enabled;
 	}
+	public Users(String userID, String password)
+	{
+		this.users = userID;
+		this.password = password;
+	}
 
+	public Users()
+	{
+		
+	}
 }

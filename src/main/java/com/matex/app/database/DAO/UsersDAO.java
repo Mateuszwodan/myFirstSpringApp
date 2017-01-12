@@ -6,5 +6,5 @@ import com.matex.app.model.Users;
 
 public interface UsersDAO extends CrudRepository<Users, Long> {
 
-	public Users findByUsername(String username);
+	public Users findByUsers(String username);
 }
