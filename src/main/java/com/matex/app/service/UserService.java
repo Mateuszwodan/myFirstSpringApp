@@ -25,12 +25,18 @@ public class UserService {
 	}
 	public UsersTo getUserByUsername(String username)
 	{
-		return userMapper.mapModel2To(usersDAO.findByUsers(username));
+		Users user = usersDAO.findByUsers(username);
+		UsersTo usersTo = userMapper.mapModel2To(user);
+		usersTo.setPassword("");
+		return usersTo;
 	}
 	public List<Users> getAll()
 	{
 		List<Users> users = new ArrayList<Users>();
     	usersDAO.findAll().forEach(users::add);
+    	for (Users users2 : users) {
+			users2.setPassword("");
+		}
     	return users;
 	}
 }

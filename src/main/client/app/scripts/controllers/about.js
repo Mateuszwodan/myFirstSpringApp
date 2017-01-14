@@ -13,7 +13,7 @@ angular.module('clientApp')
     $scope.dodawaniePlatnosci = true;
     $scope.dodawanieUzytkownika = true;
     $scope.uzytkownicy = [];
-    var nazwa = "https://myfirstspringapp.herokuapp.com/";
+    var nazwa = "http://localhost:8080/";
 
     var req = {
       method: 'GET',

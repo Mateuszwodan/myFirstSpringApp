@@ -2,6 +2,7 @@ package com.matex.app.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.matex.app.database.DAO.TransactionDAO;
 import com.matex.app.model.Users;
 import com.matex.app.model.to.Answer;
-import com.matex.app.model.to.ClientTo;
 import com.matex.app.model.to.TextToProcess;
 import com.matex.app.model.to.TransactionTo;
 import com.matex.app.model.to.UsersTo;
@@ -85,8 +85,10 @@ public class HelloController {
     	return userService.getAll();
     }
     @RequestMapping(value = "/getTransactions", method = RequestMethod.GET, produces = "application/json")
-    public  @ResponseBody List<TransactionTo> getTransactions() {
+    public  @ResponseBody List<TransactionTo> getTransactions(Principal principal) {
     	List<TransactionTo> transactions = databaseService.getAllTransactions();
+    	//System.out.println(principal.getName());
+    	//System.out.println(principal.toString());
     	return transactions;
     }
     @RequestMapping(value = "/saveTransaction", method = RequestMethod.POST, produces = "application/json")

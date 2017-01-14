@@ -45,6 +45,7 @@ public class DatabaseService {
 	{
 		List<Transaction> transaction = new ArrayList<Transaction>();
 		transactionDAO.findAll().forEach(transaction::add);
+		removePassword(transaction);
 		return transactionMapper.mapModels2Tos(transaction);
 	}
 	public String saveTransaction(TransactionTo transactionTo)
@@ -56,5 +57,12 @@ public class DatabaseService {
 	{
 		transactionDAO.delete(transactionMapper.mapTo2Model(transactionTo));
 		return "Object deleted from database";
+	}
+	private void removePassword(List<Transaction> transactions)
+	{
+		for (Transaction transaction : transactions) {
+			transaction.getCreditor().setPassword("");
+			transaction.getDebtor().setPassword("");
+		}
 	}
 }
