@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.matex.app.database.DAO.UsersDAO;
 import com.matex.app.mapper.UsersMapper;
-import com.matex.app.model.Users;
+import com.matex.app.model.User;
 import com.matex.app.model.to.UsersTo;
 
 @Service
@@ -25,16 +25,16 @@ public class UserService {
 	}
 	public UsersTo getUserByUsername(String username)
 	{
-		Users user = usersDAO.findByUsers(username);
+		User user = usersDAO.findByUsers(username);
 		UsersTo usersTo = userMapper.mapModel2To(user);
 		usersTo.setPassword("");
 		return usersTo;
 	}
-	public List<Users> getAll()
+	public List<User> getAll()
 	{
-		List<Users> users = new ArrayList<Users>();
+		List<User> users = new ArrayList<User>();
     	usersDAO.findAll().forEach(users::add);
-    	for (Users users2 : users) {
+    	for (User users2 : users) {
 			users2.setPassword("");
 		}
     	return users;

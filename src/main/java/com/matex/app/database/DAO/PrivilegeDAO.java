@@ -4,9 +4,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.matex.app.model.User;
+import com.matex.app.model.Privilege;
 @Transactional
-public interface UsersDAO extends CrudRepository<User, Long> {
+public interface PrivilegeDAO extends CrudRepository<Privilege, Long>{
+	
+	public Privilege findByName(String email);
 
-	public User findByUsers(String username);
 }

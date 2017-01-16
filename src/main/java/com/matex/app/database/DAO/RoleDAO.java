@@ -4,9 +4,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.matex.app.model.User;
+import com.matex.app.model.Role;
 @Transactional
-public interface UsersDAO extends CrudRepository<User, Long> {
+public interface RoleDAO extends CrudRepository<Role, Long>{
 
-	public User findByUsers(String username);
+	public Role findByName(String email);
 }

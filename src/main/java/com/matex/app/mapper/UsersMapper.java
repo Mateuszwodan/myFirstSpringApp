@@ -5,29 +5,29 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.matex.app.model.Users;
+import com.matex.app.model.User;
 import com.matex.app.model.to.UsersTo;
 @Component
 public class UsersMapper {
-	public UsersTo mapModel2To(Users Users) {
+	public UsersTo mapModel2To(User Users) {
 		return new UsersTo(Users.getUsername(), Users.getPassword(), Users.getEnabled());
 	}
 
-	public Users mapTo2Model(UsersTo UsersTo) {
-		return new Users(UsersTo.getUsername(), UsersTo.getPassword(), UsersTo.getEnabled());
+	public User mapTo2Model(UsersTo UsersTo) {
+		return new User(UsersTo.getUsername(), UsersTo.getPassword(), UsersTo.getEnabled());
 	}
-	public List<UsersTo> mapModels2Tos(List<Users> Userss) {
+	public List<UsersTo> mapModels2Tos(List<User> Userss) {
 		List<UsersTo> UserssTo = new ArrayList<UsersTo>();
-		for (Users Users : Userss) {
+		for (User Users : Userss) {
 			UserssTo.add(new UsersTo(Users.getUsername(), Users.getPassword(), Users.getEnabled()));
 		}
 	    return UserssTo;
 	  }
 
-	  public List<Users> mapTos2Models(List<UsersTo> UsersTos) {
-		  List<Users> Userss = new ArrayList<Users>();
+	  public List<User> mapTos2Models(List<UsersTo> UsersTos) {
+		  List<User> Userss = new ArrayList<User>();
 			for (UsersTo Users : UsersTos) {
-				Userss.add(new Users(Users.getUsername(), Users.getPassword(), Users.getEnabled()));
+				Userss.add(new User(Users.getUsername(), Users.getPassword(), Users.getEnabled()));
 			}
 		    return Userss;
 	  }

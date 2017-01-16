@@ -1,5 +1,9 @@
 package com.matex.app.model.to;
 
+import java.util.Collection;
+
+import com.matex.app.model.Role;
+
 public class UsersTo {
 
 	private String username;
@@ -7,6 +11,8 @@ public class UsersTo {
 	private String password;
 
 	private boolean enabled;
+	
+	private Collection<Role> roles;
 	
 	public void setUsername(String username)
 	{
@@ -41,5 +47,11 @@ public class UsersTo {
 	public UsersTo()
 	{
 		
+	}
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
 	}
 }
