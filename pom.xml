@@ -103,7 +103,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${build.outputDirectory}/static</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
 							<resources>
 								<resource>
 									<directory>src/main/client/dist</directory>

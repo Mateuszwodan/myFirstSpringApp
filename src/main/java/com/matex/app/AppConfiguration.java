@@ -8,5 +8,5 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AppConfiguration {
 
- 
+	 
 }

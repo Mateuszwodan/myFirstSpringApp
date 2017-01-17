@@ -29,7 +29,7 @@ import com.matex.app.service.DatabaseService;
 import com.matex.app.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin(origins = "https://myfirstspringapp.herokuapp.com/")
 public class HelloController {
 	
 	private final App appService;
@@ -63,7 +63,7 @@ public class HelloController {
     }
     
     @RequestMapping(value = "/processText", method = RequestMethod.POST, produces = "application/json")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public  @ResponseBody TextToProcess processSomeText(@RequestBody TextToProcess textToProcess) {
         TextToProcess ans = new TextToProcess();
         ans.settext(appService.processText(textToProcess));

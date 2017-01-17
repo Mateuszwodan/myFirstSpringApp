@@ -12,7 +12,8 @@ angular.module('clientApp')
     $scope.dataFromServer = "nic nie ma";
     $scope.textToProcess = "";
     $scope.ShowText = "";
-    var nazwa = "http://localhost:8080/";
+    //var nazwa = "http://localhost:8080/";
+    var nazwa = "https://myfirstspringapp.herokuapp.com/";
     var data;
     this.awesomeThings = [
       'HTML5 Boilerplate',
