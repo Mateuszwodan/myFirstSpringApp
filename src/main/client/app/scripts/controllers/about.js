@@ -61,7 +61,7 @@ angular.module('clientApp')
             "enabled": true,
           },
           "debt": $scope.kwota,
-          "description": "xxx",
+          "description": $scope.opis,
 
         }
       };
