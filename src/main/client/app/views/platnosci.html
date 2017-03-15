@@ -16,12 +16,12 @@
     <input type="submit" class="btn-success" value="Zapisz platnosc">
   </div>
   </form>
+  <form name="myFormZapisz" ng-submit="zapiszUzytkownika()">
   <div class="form-group" ng-hide="dodawanieUzytkownika">
-     <input id="username" ng-model="nowy_uzytkownik" class="form-control" placeholder="Nazwa uzytkownika">
-    <button ng-click="zapiszUzytkownika()" class="btn-success">
-    Zapisz użytkownika
-  </button>
+     <input id="username" ng-model="nowy_uzytkownik" class="form-control" placeholder="Nazwa uzytkownika" required>
+    <input type="submit" class="btn-success" value="Zapisz uzytkownika">
   </div>
+   </form>
   <div class="container">
     <table class="table">
       <tr ng-repeat="x in daneZSerwera">
