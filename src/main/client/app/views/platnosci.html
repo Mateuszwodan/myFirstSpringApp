@@ -1,5 +1,5 @@
 <div class="container">
-  <form name="myForm">
+  <form name="myForm" ng-submit="zapiszPlatnosc()">
   <div class="form-group" ng-hide="dodawaniePlatnosci">
     <label for="biorca">Biorca</label>
     <select name="biorca" ng-model="biorca" class="form-control" ng-options="x.username for x in uzytkownicy" required>
@@ -13,9 +13,7 @@
     <input id="kwota" ng-model="kwota" class="form-control" type="number" required>
     <label for="opis">Powód</label>
     <textarea id="powod" ng-model="opis" class="form-control" rows="3" required></textarea>
-    <button ng-click="zapiszPlatnosc()" class="btn-success">
-    Zapisz płatnośc
-  </button>
+    <input type="submit" class="btn-success" value="Zapisz platnosc">
   </div>
   </form>
   <div class="form-group" ng-hide="dodawanieUzytkownika">
