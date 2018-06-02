@@ -57,7 +57,7 @@ angular.module('clientApp')
             "name": $scope.dawca.name
           },
           "debt": $scope.kwota,
-          "description": "xxx",
+          "description": $scope.opis,
 
         }
       };
