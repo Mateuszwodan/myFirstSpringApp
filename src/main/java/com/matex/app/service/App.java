@@ -4,17 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.matex.app.database.DAO.ClientDAO;
-import com.matex.app.mapper.ClientMapper;
-import com.matex.app.model.Client;
-import com.matex.app.model.to.ClientTo;
-import com.matex.app.model.to.TextToProcess;
+import com.matex.app.model.DTO.TextToProcess;
 
 /**
  * Hello world!

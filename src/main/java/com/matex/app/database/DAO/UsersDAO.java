@@ -8,5 +8,5 @@ import com.matex.app.model.User;
 @Transactional
 public interface UsersDAO extends CrudRepository<User, Long> {
 
-	public User findByUsers(String username);
+	public User findByName(String username);
 }

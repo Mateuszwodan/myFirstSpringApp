@@ -13,8 +13,8 @@ angular.module('clientApp')
     $scope.dodawaniePlatnosci = true;
     $scope.dodawanieUzytkownika = true;
     $scope.uzytkownicy = [];
-    //var nazwa = "http://localhost:8080/";
-    var nazwa = "https://myfirstspringapp.herokuapp.com/";
+    var nazwa = "http://localhost:8080/";
+//    var nazwa = "https://myfirstspringapp.herokuapp.com/";
 
     var req = {
       method: 'GET',
@@ -51,14 +51,10 @@ angular.module('clientApp')
         },
         data: {
           "debtor": {
-            "username": $scope.biorca.username,
-            "password": " ",
-            "enabled": true,
+            "name": $scope.biorca.name
           },
           "creditor": {
-            "username": $scope.dawca.username,
-            "password": " ",
-            "enabled": true,
+            "name": $scope.dawca.name
           },
           "debt": $scope.kwota,
           "description": "xxx",
@@ -91,14 +87,10 @@ angular.module('clientApp')
         },
         data: {
           "debtor": {
-            "username": $scope.daneZSerwera[index].debtor.username,
-            "password": " ",
-            "enabled": true,
+            "name": $scope.daneZSerwera[index].debtor.name
           },
           "creditor": {
-            "username": $scope.daneZSerwera[index].creditor.username,
-            "password": " ",
-            "enabled": true,
+            "name": $scope.daneZSerwera[index].creditor.name
           },
           "debt": $scope.daneZSerwera[index].debt,
           "description": "xxx",
@@ -131,7 +123,7 @@ angular.module('clientApp')
           'Content-Type': 'application/json'
         },
         data: {
-            "username": $scope.nowy_uzytkownik,
+            "name": $scope.nowy_uzytkownik,
             "password": " ",
             "enabled": true,
           }

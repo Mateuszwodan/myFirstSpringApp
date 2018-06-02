@@ -9,24 +9,22 @@ import org.springframework.stereotype.Service;
 import com.matex.app.database.DAO.UsersDAO;
 import com.matex.app.mapper.UsersMapper;
 import com.matex.app.model.User;
-import com.matex.app.model.to.UsersTo;
+import com.matex.app.model.DTO.UserDTO;
 
 @Service
 public class UserService {
 
 	@Autowired
 	UsersDAO usersDAO;	
-	@Autowired
-	UsersMapper userMapper;
 	
 	public UserService(UsersDAO usersDAO)
 	{
 		this.usersDAO = usersDAO;
 	}
-	public UsersTo getUserByUsername(String username)
+	public UserDTO getUserByUsername(String username)
 	{
-		User user = usersDAO.findByUsers(username);
-		UsersTo usersTo = userMapper.mapModel2To(user);
+		User user = usersDAO.findByName(username);
+		UserDTO usersTo = UsersMapper.INSTANCE.userToUserDto(user);
 		usersTo.setPassword("");
 		return usersTo;
 	}

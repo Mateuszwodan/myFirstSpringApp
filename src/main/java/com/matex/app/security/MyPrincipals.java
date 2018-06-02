@@ -1,10 +1,8 @@
 package com.matex.app.security;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +21,7 @@ public class MyPrincipals implements UserDetails {
 	public MyPrincipals(String name, String pswd, boolean b, boolean c, boolean d, boolean isActive,
 			Collection<Role> roles) {
 		user = new User();
-		user.setUsername(name);
+		user.setName(name);
 		user.setPassword(pswd);
 		user.setRole(roles);
 	}
@@ -46,7 +44,7 @@ public class MyPrincipals implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return user.getUsername();
+		return user.getName();
 	}
 
 	@Override

@@ -1,15 +1,13 @@
-package com.matex.app.model.to;
+package com.matex.app.model.DTO;
 
-public class TransactionTo {
+public class TransactionDTO {
 	
 	private long id;
 	
-	private UsersTo debtor;
-	
-	
-	private UsersTo creditor;
-	
-	
+	private UserDTO debtor;
+		
+	private UserDTO creditor;
+		
 	private Double debt;
 	
 	private String description;
@@ -22,7 +20,7 @@ public class TransactionTo {
 	{
 		this.debt = Debt;
 	}
-	public TransactionTo(UsersTo Debtor, UsersTo Creditor, Double Debt, String description, long id)
+	public TransactionDTO(UserDTO Debtor, UserDTO Creditor, Double Debt, String description, long id)
 	{
 		this.debtor = Debtor;
 		this.creditor = Creditor;
@@ -30,26 +28,26 @@ public class TransactionTo {
 		this.description = description;
 		this.setId(id);
 	}	
-	public TransactionTo(UsersTo Debtor, UsersTo Creditor, Double Debt, String description)
+	public TransactionDTO(UserDTO Debtor, UserDTO Creditor, Double Debt, String description)
 	{
 		this.debtor = Debtor;
 		this.creditor = Creditor;
 		this.debt = Debt;
 		this.description = description;
 	}	
-	public void setDebtor(UsersTo Debtor)
+	public void setDebtor(UserDTO Debtor)
 	{
 		this.debtor = Debtor;
 	}
-	public void setCreditor(UsersTo Creditor)
+	public void setCreditor(UserDTO Creditor)
 	{
 		this.creditor = Creditor;
 	}
-	public UsersTo getDebtor()
+	public UserDTO getDebtor()
 	{
 		return this.debtor;
 	}
-	public UsersTo getCreditor()
+	public UserDTO getCreditor()
 	{
 		return this.creditor;
 	}
@@ -59,7 +57,7 @@ public class TransactionTo {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public TransactionTo()
+	public TransactionDTO()
 	{
 		
 	}

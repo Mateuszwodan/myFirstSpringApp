@@ -1,12 +1,15 @@
-package com.matex.app.model.to;
+package com.matex.app.model.DTO;
 
 import java.util.Collection;
 
+import com.matex.app.model.Groups;
 import com.matex.app.model.Role;
 
-public class UsersTo {
+public class UserDTO {
+	
+	private Long Id;
 
-	private String username;
+	private String name;
 
 	private String password;
 
@@ -14,10 +17,8 @@ public class UsersTo {
 	
 	private Collection<Role> roles;
 	
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
+	private Collection<Groups> groups;
+	
 	public void setPassword(String password)
 	{
 		this.password = password;
@@ -25,10 +26,6 @@ public class UsersTo {
 	public void setEnabled(boolean enabled)
 	{
 		this.enabled = enabled;
-	}
-	public String getUsername()
-	{
-		return username;
 	}
 	public String getPassword()
 	{
@@ -38,13 +35,7 @@ public class UsersTo {
 	{
 		return enabled;
 	}
-	public UsersTo(String username, String password, boolean enabled)
-	{
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-	}
-	public UsersTo()
+	public UserDTO()
 	{
 		
 	}
@@ -53,5 +44,23 @@ public class UsersTo {
 	}
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
+	}
+	public Collection<Groups> getGroups() {
+		return groups;
+	}
+	public void setGroups(Collection<Groups> groups) {
+		this.groups = groups;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		Id = id;
 	}
 }

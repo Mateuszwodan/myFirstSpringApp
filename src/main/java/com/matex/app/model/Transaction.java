@@ -22,32 +22,18 @@ public class Transaction {
 	@ManyToOne
 	private User creditor;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	@NotNull
-	private Double debt;
+	private Integer debt;
 	
 	private String description;
 	
-	public Double getDebt()
+	public Integer getDebt()
 	{
 		return debt;
 	}
-	public void setDebt(Double Debt)
+	public void setDebt(Integer Debt)
 	{
 		this.debt = Debt;
-	}
-	public Transaction(User Debtor, User Creditor, Double Debt, String description, long id)
-	{
-		this.debtor = Debtor;
-		this.creditor = Creditor;
-		this.debt = Debt;
-		this.description = description;
-		this.id = id;
 	}
 	public void setDebtor(User Debtor)
 	{
@@ -75,4 +61,18 @@ public class Transaction {
 	{
 		
 	}
+	public Transaction(User debtor, User creditor, Integer debt, String description) {
+		super();
+		this.debtor = debtor;
+		this.creditor = creditor;
+		this.debt = debt;
+		this.description = description;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 }

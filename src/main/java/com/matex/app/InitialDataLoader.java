@@ -17,7 +17,6 @@ import com.matex.app.database.DAO.RoleDAO;
 import com.matex.app.database.DAO.UsersDAO;
 import com.matex.app.model.Privilege;
 import com.matex.app.model.Role;
-import com.matex.app.model.User;
 
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -47,13 +46,13 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
  
-        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        User user = new User();
-        user.setUsername("Test");
-        user.setPassword(passwordEncoder.encode("test"));
-        user.setRole(Arrays.asList(adminRole));
-        user.setEnabled(true);
-        userRepository.save(user);
+//        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+//        User user = new User();
+//        user.setName("Test");
+//        user.setPassword(passwordEncoder.encode("test"));
+//        user.setRole(Arrays.asList(adminRole));
+//        user.setEnabled(true);
+//        userRepository.save(user);
  
         alreadySetup = true;
     }

@@ -40,6 +40,6 @@
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js",
-     "build": "npm build"
+    "build": "npm build"
   }
 }

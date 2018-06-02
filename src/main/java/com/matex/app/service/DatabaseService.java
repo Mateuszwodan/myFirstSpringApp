@@ -15,9 +15,8 @@ import com.matex.app.mapper.UsersMapper;
 import com.matex.app.model.Role;
 import com.matex.app.model.Transaction;
 import com.matex.app.model.User;
-import com.matex.app.model.to.TransactionTo;
-import com.matex.app.model.to.UsersTo;
-import com.mysql.fabric.xmlrpc.base.Array;
+import com.matex.app.model.DTO.TransactionDTO;
+import com.matex.app.model.DTO.UserDTO;
 
 
 @Service
@@ -25,45 +24,37 @@ public class DatabaseService {
 	@Autowired
 	UsersDAO usersDAO;	
 	@Autowired
-	UsersMapper UsersMapper;
-	@Autowired
 	TransactionDAO transactionDAO;
 	@Autowired
-	TransactionMapper transactionMapper;
-	@Autowired
 	RoleDAO roleDAO;
-	@Autowired
-	public DatabaseService(UsersMapper usersMapper, UsersDAO clientDAO, TransactionDAO transactionDAO, TransactionMapper transactionMapper, RoleDAO roleDAO)
+	
+	public DatabaseService()
 	{
-		this.UsersMapper = usersMapper;
-		this.usersDAO = clientDAO;
-		this.transactionDAO = transactionDAO;
-		this.transactionMapper = transactionMapper;
-		this.roleDAO = roleDAO;
+		
 	}
-	public String saveUser(UsersTo user)
+	public String saveUser(UserDTO user)
 	{
-		User users = UsersMapper.mapTo2Model(user);
+		User users = UsersMapper.INSTANCE.userDTOToUser(user);
 		Role userRole = roleDAO.findByName("ROLE_USER");
 		users.setRole(Arrays.asList(userRole));
 		usersDAO.save(users);
 		return "Object saved to database";
 	}
-	public List<TransactionTo> getAllTransactions()
+	public List<TransactionDTO> getAllTransactions()
 	{
 		List<Transaction> transaction = new ArrayList<Transaction>();
 		transactionDAO.findAll().forEach(transaction::add);
 		removePassword(transaction);
-		return transactionMapper.mapModels2Tos(transaction);
+		return TransactionMapper.INSTANCE.transactionsToTransactionDtos(transaction);
 	}
-	public String saveTransaction(TransactionTo transactionTo)
+	public String saveTransaction(TransactionDTO transactionTo)
 	{
-		transactionDAO.save(transactionMapper.mapTo2Model(transactionTo));
+		transactionDAO.save(TransactionMapper.INSTANCE.transactionDTOToTransaction(transactionTo));
 		return "Object saved to database";
 	}
-	public String deleteTransaction(TransactionTo transactionTo)
+	public String deleteTransaction(TransactionDTO transactionTo)
 	{
-		transactionDAO.delete(transactionMapper.mapTo2Model(transactionTo));
+		transactionDAO.delete(TransactionMapper.INSTANCE.transactionDTOToTransaction(transactionTo));
 		return "Object deleted from database";
 	}
 	private void removePassword(List<Transaction> transactions)

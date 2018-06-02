@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.matex.app.database.DAO.TransactionDAO;
 import com.matex.app.model.User;
-import com.matex.app.model.to.Answer;
-import com.matex.app.model.to.TextToProcess;
-import com.matex.app.model.to.TransactionTo;
-import com.matex.app.model.to.UsersTo;
+import com.matex.app.model.DTO.Answer;
+import com.matex.app.model.DTO.TextToProcess;
+import com.matex.app.model.DTO.TransactionDTO;
+import com.matex.app.model.DTO.UserDTO;
 import com.matex.app.service.App;
 import com.matex.app.service.DatabaseService;
 import com.matex.app.service.UserService;
@@ -35,15 +33,13 @@ public class HelloController {
 	private final App appService;
 	private final DatabaseService databaseService;
 	private final UserService userService;
-	private final TransactionDAO transactionDAO;
 	
 	@Autowired
-	public HelloController(App appService, DatabaseService databaseService, UserService userService, TransactionDAO Transaction)
+	public HelloController(App appService, DatabaseService databaseService, UserService userService)
 	{
 	this.appService = appService;	
 	this.databaseService = databaseService;
 	this.userService = userService;
-	this.transactionDAO = Transaction;
 	}
 
     @RequestMapping("/")
@@ -76,10 +72,9 @@ public class HelloController {
         return ans;
     }
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = "application/json")
-    public  @ResponseBody TextToProcess saveUser(@RequestBody UsersTo usersTo) {
-    	UsersTo users = new UsersTo(usersTo.getUsername(), usersTo.getPassword(), usersTo.getEnabled());
+    public  @ResponseBody TextToProcess saveUser(@RequestBody UserDTO usersTo) {
         TextToProcess ans = new TextToProcess();
-        ans.settext(databaseService.saveUser(users));
+        ans.settext(databaseService.saveUser(usersTo));
         return ans;
     }
     @RequestMapping(value = "/getUsers123", method = RequestMethod.GET, produces = "application/json")
@@ -87,47 +82,47 @@ public class HelloController {
     	return userService.getAll();
     }
     @RequestMapping(value = "/getTransactions", method = RequestMethod.GET, produces = "application/json")
-    public  @ResponseBody List<TransactionTo> getTransactions(Principal principal) {
-    	List<TransactionTo> transactions = databaseService.getAllTransactions();
+    public  @ResponseBody List<TransactionDTO> getTransactions(Principal principal) {
+    	List<TransactionDTO> transactions = databaseService.getAllTransactions();
     	//System.out.println(principal.getName());
     	//System.out.println(principal.toString());
     	return transactions;
     }
     @RequestMapping(value = "/saveTransaction", method = RequestMethod.POST, produces = "application/json")
-    public  @ResponseBody TextToProcess saveTransaction(@RequestBody TransactionTo transactionTo) {
+    public  @ResponseBody TextToProcess saveTransaction(@RequestBody TransactionDTO transactionTo) {
     	
-    	UsersTo first;
-    	UsersTo second;
+    	UserDTO first;
+    	UserDTO second;
     	TextToProcess ans;
     	ans = new TextToProcess();
     	try{
-    	first = userService.getUserByUsername(transactionTo.getDebtor().getUsername());
-    	second = userService.getUserByUsername(transactionTo.getCreditor().getUsername());
+    	first = userService.getUserByUsername(transactionTo.getDebtor().getName());
+    	second = userService.getUserByUsername(transactionTo.getCreditor().getName());
     	}catch(Exception e)
     	{
     		ans.settext("Error");
     		return ans;
     	}
-    	TransactionTo trans = new TransactionTo(first, second, transactionTo.getDebt(), transactionTo.getDescription()); 	
+    	TransactionDTO trans = new TransactionDTO(first, second, transactionTo.getDebt(), transactionTo.getDescription()); 	
         ans.settext(databaseService.saveTransaction(trans));
         return ans;
     }
     @RequestMapping(value = "/deleteTransaction", method = RequestMethod.POST, produces = "application/json")
-    public  @ResponseBody TextToProcess deleteTransaction(@RequestBody TransactionTo transactionTo) {
+    public  @ResponseBody TextToProcess deleteTransaction(@RequestBody TransactionDTO transactionTo) {
     	
-    	UsersTo first;
-    	UsersTo second;
+    	UserDTO first;
+    	UserDTO second;
     	TextToProcess ans;
     	ans = new TextToProcess();
     	try{
-    	first = userService.getUserByUsername(transactionTo.getDebtor().getUsername());
-    	second = userService.getUserByUsername(transactionTo.getCreditor().getUsername());
+    	first = userService.getUserByUsername(transactionTo.getDebtor().getName());
+    	second = userService.getUserByUsername(transactionTo.getCreditor().getName());
     	}catch(Exception e)
     	{
     		ans.settext("Error");
     		return ans;
     	}
-    	TransactionTo trans = new TransactionTo(first, second, transactionTo.getDebt(), transactionTo.getDescription(), transactionTo.getId()); 	
+    	TransactionDTO trans = new TransactionDTO(first, second, transactionTo.getDebt(), transactionTo.getDescription(), transactionTo.getId()); 	
         ans.settext(databaseService.deleteTransaction(trans));
         return ans;
     }

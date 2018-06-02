@@ -1,4 +1,4 @@
-package com.matex.app.model.to;
+package com.matex.app.model.DTO;
 
 import org.springframework.stereotype.Component;
 

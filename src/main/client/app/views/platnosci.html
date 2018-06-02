@@ -1,8 +1,8 @@
 <div class="container">
   <div class="form-group form-inline" ng-hide="dodawaniePlatnosci">
-    <select ng-model="biorca" class="form-control" ng-options="x.username for x in uzytkownicy">
+    <select ng-model="biorca" class="form-control" ng-options="x.name for x in uzytkownicy">
   </select>
-    <select ng-model="dawca" class="form-control" ng-options="x.username for x in uzytkownicy">
+    <select ng-model="dawca" class="form-control" ng-options="x.name for x in uzytkownicy">
      </select>
     <input id="kwota" ng-model="kwota" class="form-control" placeholder="Kwota" type="number">
     <button ng-click="zapiszPlatnosc()" class="btn-success">
@@ -19,7 +19,7 @@
     <table class="table">
       <tr ng-repeat="x in daneZSerwera">
         <td>
-          <h3>Id transakcji : {{x.id}}.</br> {{x.creditor.username}} jest winien {{x.debtor.username}} : {{x.debt}} złotych</h3>
+          <h3>Id transakcji : {{x.id}}.</br> {{x.creditor.name}} jest winien {{x.debtor.name}} : {{x.debt}} złotych za {{x.description}}.</h3>
         <td>
           <input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow($index)" />
         </td>
