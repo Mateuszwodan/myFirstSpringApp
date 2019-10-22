@@ -91,6 +91,7 @@
 							<executable>grunt</executable>
 							<arguments>
 								<argument>build:dist</argument>
+								<argument>--force</argument>
 							</arguments>
 							<workingDirectory>src/main/client</workingDirectory>
 						</configuration>
